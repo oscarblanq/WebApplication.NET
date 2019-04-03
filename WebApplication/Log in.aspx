@@ -10,17 +10,14 @@
                                 <input id="Text1" type="text" name="username class=form_input form_input--fullWidth" title="username"/>
 							</div>
 							<div class="form_row">
-							
 							<label class="form_label" for="password">Contraseña</label>
 											<input id="password" name="password" class="form_input form_input--fullWidth" title="Password" type="password" value="" maxlength="255"/>
 										</div>
 										<div class="form_row">
-                        <button class="button" type="submit">Log in</button>
-
+                                            <asp:Button ID="Button1" CssClass="button" type="submit" runat="server" Text="Log in" />
 										</div>
 									</form>
 								</div>
-								
 							</div>
 						</div>
 					</div>
