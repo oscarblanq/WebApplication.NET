@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
 using System.Web.Services;
+using System.Data.SQLite;
 
 namespace WebService
 {
+    
     /// <summary>
     /// Summary description for WebService
     /// </summary>
@@ -17,10 +20,15 @@ namespace WebService
     public class WebService : System.Web.Services.WebService
     {
 
+        private string DBpath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\database.db\\";
+        SQLiteConnection conn = new SQLiteConnection(DBpath);
+        conn.o
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
         }
+
+
     }
 }
