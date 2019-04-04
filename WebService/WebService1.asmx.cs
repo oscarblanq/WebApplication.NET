@@ -20,7 +20,7 @@ namespace WebService
     public class WebService1 : System.Web.Services.WebService
     {
         public string DBpath = AppDomain.CurrentDomain.BaseDirectory + "database.db";
-        
+
         [WebMethod]
         public void addStudent(string _id, string name, string surname, int age, string address, int dni)
         {
@@ -28,7 +28,7 @@ namespace WebService
             {
                 conn.Open();
                 SQLiteCommand comm = new SQLiteCommand("INSERT INTO 'Students' (_id, name, surname, age, address, dni)" +
-                    " VALUES ('"+_id+"', '"+name+"', '"+surname+ "', '" + age + "', '" + address +
+                    " VALUES ('" + _id + "', '" + name + "', '" + surname + "', '" + age + "', '" + address +
                     "', '" + dni + "');", conn);
                 SQLiteDataAdapter da = new SQLiteDataAdapter();
                 da.InsertCommand = comm;
@@ -42,8 +42,8 @@ namespace WebService
             using (SQLiteConnection conn = new SQLiteConnection("Data Source=" + DBpath + ";Version=3;"))
             {
                 conn.Open();
-                SQLiteCommand comm = new SQLiteCommand("UPDATE 'Students' SET _id = '"+_id+"'" +
-                    ", name = '"+name+"', surname = '"+surname+"' , age = '"+age+"' , address = '"+address+"' , dni = '"+dni+"'  WHERE _id = '"+_id+"';", conn);
+                SQLiteCommand comm = new SQLiteCommand("UPDATE 'Students' SET _id = '" + _id + "'" +
+                    ", name = '" + name + "', surname = '" + surname + "' , age = '" + age + "' , address = '" + address + "' , dni = '" + dni + "'  WHERE _id = '" + _id + "';", conn);
 
                 SQLiteDataAdapter da = new SQLiteDataAdapter();
                 da.InsertCommand = comm;
@@ -76,17 +76,18 @@ namespace WebService
             }
             return rol;
         }
+        
 
         [WebMethod]
         public List<string> dataStudent(string alumno)
         {
             List<string> dataStudent = new List<string>();
-            
+
             using (SQLiteConnection conn = new SQLiteConnection("Data Source=" + DBpath + ";Version=3;"))
             {
                 conn.Open();
 
-                String query = "SELECT * FROM Students WHERE name = '" + alumno + "';";
+                String query = "SELECT * FROM Students WHERE _id = '" + alumno + "';";
 
                 SQLiteCommand comm = new SQLiteCommand(query, conn);
 
@@ -96,7 +97,7 @@ namespace WebService
                     dt.Load(reader);
                     foreach (DataRow dr in dt.Rows)
                     {
-                        
+
                         dataStudent.Add(dr["_id"].ToString());
 
                         dataStudent.Add(dr["name"].ToString());
@@ -113,6 +114,33 @@ namespace WebService
                 }
                 return dataStudent;
             }
+        }
+
+        [WebMethod]
+        public List<string> getSubjects()
+        {
+            List<string> subjects = new List<string>();
+
+            using (SQLiteConnection conn = new SQLiteConnection("Data Source=" + DBpath + ";Version=3;"))
+            {
+                conn.Open();
+
+                String query = "SELECT * FROM Subjects;";
+
+                SQLiteCommand comm = new SQLiteCommand(query, conn);
+
+                using (SQLiteDataReader reader = comm.ExecuteReader())
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        subjects.Add(dr["name"].ToString());
+                        subjects.Add(dr["classroom"].ToString());
+                    }
+                }
+            }
+            return subjects;
         }
     }
 }

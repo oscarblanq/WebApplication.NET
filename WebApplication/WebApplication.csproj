@@ -76,11 +76,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\webService\Reference.map">
+    <None Include="Web References\WebService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <None Include="Web References\webService\WebService1.disco" />
+    </None>
+    <None Include="Web References\WebService\WebService1.disco" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -115,7 +115,7 @@
     <Compile Include="Students\Student.aspx.designer.cs">
       <DependentUpon>Student.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\webService\Reference.cs">
+    <Compile Include="Web References\WebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -138,7 +138,7 @@
   <ItemGroup>
     <Content Include="Home.Master" />
     <None Include="packages.config" />
-    <None Include="Web References\webService\WebService1.wsdl" />
+    <None Include="Web References\WebService\WebService1.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,14 +163,14 @@
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:12483/WebService1.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\webService\</RelPath>
+      <RelPath>Web References\WebService\</RelPath>
       <UpdateFromURL>http://localhost:12483/WebService1.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>WebApplication_webService_WebService1</CachedSettingsPropName>
+      <CachedSettingsPropName>WebApplication_WebService_WebService1</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
