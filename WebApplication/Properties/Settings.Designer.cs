@@ -27,9 +27,9 @@ namespace WebApplication.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12483/WebService1.asmx")]
-        public string WebApplication_WebServiceReference_WebService1 {
+        public string WebApplication_webService_WebService1 {
             get {
-                return ((string)(this["WebApplication_WebServiceReference_WebService1"]));
+                return ((string)(this["WebApplication_webService_WebService1"]));
             }
         }
     }

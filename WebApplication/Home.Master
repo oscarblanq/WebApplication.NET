@@ -12,7 +12,7 @@
 <body>
     <header>
         <a href="WebForm1.aspx"><img src="http://www.jpa.upv.es/recursos/images/marcaUPV_50a.png" alt="logo" id="logo"/></a>
-        <a href="Log in.aspx">
+        <a href="Login.aspx">
             <div id="user-panel">
                 <div id="icon"><i class="fas fa-user-circle fa-3x"></i></div>
                 <div id="log-in">Log in</div>

@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace WebApplication.WebServiceReference {
+namespace WebApplication.webService {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -31,11 +31,13 @@ namespace WebApplication.WebServiceReference {
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
+        private System.Threading.SendOrPostCallback verifiedLoginOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
         public WebService1() {
-            this.Url = global::WebApplication.Properties.Settings.Default.WebApplication_WebServiceReference_WebService1;
+            this.Url = global::WebApplication.Properties.Settings.Default.WebApplication_webService_WebService1;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -73,6 +75,9 @@ namespace WebApplication.WebServiceReference {
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
+        public event verifiedLoginCompletedEventHandler verifiedLoginCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -96,6 +101,37 @@ namespace WebApplication.WebServiceReference {
             if ((this.HelloWorldCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.HelloWorldCompleted(this, new HelloWorldCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/verifiedLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool verifiedLogin(string user, string password) {
+            object[] results = this.Invoke("verifiedLogin", new object[] {
+                        user,
+                        password});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void verifiedLoginAsync(string user, string password) {
+            this.verifiedLoginAsync(user, password, null);
+        }
+        
+        /// <remarks/>
+        public void verifiedLoginAsync(string user, string password, object userState) {
+            if ((this.verifiedLoginOperationCompleted == null)) {
+                this.verifiedLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnverifiedLoginOperationCompleted);
+            }
+            this.InvokeAsync("verifiedLogin", new object[] {
+                        user,
+                        password}, this.verifiedLoginOperationCompleted, userState);
+        }
+        
+        private void OnverifiedLoginOperationCompleted(object arg) {
+            if ((this.verifiedLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.verifiedLoginCompleted(this, new verifiedLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -140,6 +176,32 @@ namespace WebApplication.WebServiceReference {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    public delegate void verifiedLoginCompletedEventHandler(object sender, verifiedLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3056.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class verifiedLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal verifiedLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

@@ -6,15 +6,15 @@
 								<div class="col medium-7">
 									<form id="login-form" class="form" action="/eac/login.htm" method="post">
 							<div class="form_row">
-								<label class="form_label" for="username">Nombre de usuario</label>
-                                <input id="Text1" type="text" name="username class=form_input form_input--fullWidth" title="username"/>
+								<label class="form_label" for="username">Nombre de usuario</label>&nbsp;
+                                <asp:TextBox ID="usernameTextBox" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
 							</div>
 							<div class="form_row">
-							<label class="form_label" for="password">Contraseña</label>
-											<input id="password" name="password" class="form_input form_input--fullWidth" title="Password" type="password" value="" maxlength="255"/>
+							<label class="form_label" for="password">Contraseña</label>&nbsp;
+                                <asp:TextBox ID="passwordTextBox" runat="server"></asp:TextBox>
 										</div>
 										<div class="form_row">
-                                            <asp:Button ID="Button1" CssClass="button" type="submit" runat="server" Text="Log in" />
+                                            <asp:Button ID="Button1" CssClass="button" type="submit" runat="server" Text="Log in" OnClick="Button1_Click" />
 										</div>
 									</form>
 								</div>
